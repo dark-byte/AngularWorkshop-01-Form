@@ -1,0 +1,66 @@
+<html ng-app="myApp">
+<html>
+<head>
+  <title>Angular Form</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body ng-controller="myCtrl">
+
+  <form name="userForm" ng-submit="submitForm()">
+    <h1>Upload Data</h1>
+    <div>
+        <label for="phoneNumber">Phone Number</label>
+        <input placeholder="Enter Phone number" type="text" id="phoneNumber" name="phoneNumber" ng-model="user.phoneNumber" ng-pattern="/^\d{10}$/" required>
+        <p class="error" ng-show = "userForm.phoneNumber.$touched && userForm.phoneNumber.$invalid">Please enter valid Phone Number!</p>
+    </div>
+
+    <div>
+        <label for="age">Age (18-60)</label>
+        <input type="number" id="age" name="age" ng-model="user.age" min="18" max="60" required>
+        <p class="error" ng-show = "userForm.age.$touched && userForm.age.$invalid">Please enter valid Age!</p>
+    </div>
+
+    <div>
+        <label>Gender</label>
+        <input type="radio" id="male" name="gender" ng-model="user.gender" value="male" required>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" ng-model="user.gender" value="female" required>
+        <label for="female">Female</label>
+    </div>
+
+    <div>
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" ng-model="user.dob" required>
+        <p class="error" ng-show = "userForm.dob.$touched && userForm.dob.$invalid">Please enter valid Date of Birth</p>
+    </div>
+
+    <div>
+        <label for="password">Password</label>
+        <input placeholder="Enter password" type="password" id="password" name="password" ng-model="user.password" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/"
+        required>
+        <p class="error" ng-show = "userForm.password.$touched && userForm.password.$invalid">Password must contain 1 special character, 1 capital letter, 1 small letter and 1 number</p>
+    </div>
+
+    <div class="h-captcha" data-sitekey="5d0ca651-ad1c-4462-adc8-a67a3ece695c"></div>
+
+    <button type="submit" ng-disabled="userForm.$invalid || !hcaptchaResponse">Submit</button>
+  </form>
+
+  <script>
+    var app = angular.module('myApp', []);
+
+    app.controller('myCtrl', function ($scope) {
+      $scope.submitForm = function () {
+        if ($scope.hcaptchaResponse) {
+          console.log($scope.user);
+          // You can add further processing here
+        } else {
+          alert('Please complete the hCaptcha verification.');
+        }
+      };
+    });
+  </script>
+</body>
+</html>
