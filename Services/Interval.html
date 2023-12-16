@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular JS - Working with Services</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+</head>
+<body ng-app = "intervalApp" ng-controller = "intervalCntrl">
+    <p>{{dateAndTime| date: 'dd-MM-yyyy hh:mm:ss a'}}</p>
+    <script>
+        var app = angular.module("intervalApp", []);
+        app.controller('intervalCntrl', function($scope, $interval){
+            $interval(function(){
+                $scope.dateAndTime = new Date();
+            }, 1000)
+        });
+    </script>
+</body>

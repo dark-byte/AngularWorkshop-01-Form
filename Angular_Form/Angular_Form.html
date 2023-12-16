@@ -55,22 +55,16 @@
       $scope.submitForm = function () {
         if ($scope.hcaptchaResponse) {
           console.log($scope.user);
-          // You can add further processing here
         } else {
           alert('Please complete the hCaptcha verification.');
         }
       };
 
       $scope.updateAgeValidation = function () {
-         // Calculate the minimum allowed birth year based on the entered age
-         var minBirthYear = new Date().getFullYear() - $scope.user.age;
-
-        // Extract the birth year from the entered date of birth
+        var minBirthYear = new Date().getFullYear() - $scope.user.age;
         var selectedYear = new Date($scope.user.dob).getFullYear();
 
-        // Update validation status
         $scope.userForm.dob.$setValidity('ageMismatch', selectedYear === minBirthYear);
-
       };
     });
   </script>

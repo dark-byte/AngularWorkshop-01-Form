@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+    <head>
+        <title>Angular JS - Working wth Controllers</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    </head>
+    
+    <body ng-app = "studentApp" ng-controller = "studentCntrl">
+        <input type="text" ng-model="search" placeholder="Search">
+        <h1 ng-repeat = "student in students | filter: search | orderBy: 'usn'">Student Name is {{student.name}}, USN is {{student.usn}},
+            fine - {{student.fine | currency: '₹ ': 0}}
+        </h1>
+
+        <script>
+            var app = angular.module("studentApp", []);
+            app.controller('studentCntrl', function($scope){
+                $scope.students = [
+                    {usn: 'CS004', name: 'Adrish', fine: '500'},
+                    {usn: 'CS002', name: 'Abhrajit', fine: '200'},
+                    {usn: 'CS027', name: 'Chirag', fine: '1400'},
+                    {usn: 'CS056', name: 'Prakash', fine: '800000'},
+                    {usn: 'CS039', name: 'Jaimeet', fine: '2000'},
+                ]
+            });
+        </script>
+    </body>
+</html>

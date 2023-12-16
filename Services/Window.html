@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular JS - Working with Services</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+</head>
+<body ng-app = "windowApp" ng-controller = "windowCntrl">
+
+    <button ng-click = "openNewWindow()">View Adrish's Resume</button>
+
+    <script>
+        var app = angular.module("windowApp", []);
+        app.controller('windowCntrl', function($scope, $window){
+            $scope.openNewWindow = ()=>{
+                var newUrl = 'https://adrish-mitra.web.app';
+                $window.open(newUrl, '_blank')
+            }
+        });
+    </script>
+</body>
