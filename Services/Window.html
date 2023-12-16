@@ -9,11 +9,19 @@
 </head>
 <body ng-app = "windowApp" ng-controller = "windowCntrl">
 
-    <button ng-click = "openNewWindow()">View Adrish's Resume</button>
+    <button ng-click = "openNewWindow()">View Adrish's Resume</button> <br> <br>
 
+    <input type="text" placeholder="Enter alert message" name="alertMsg" ng-model = "alertMsg" id=""> <br>
+    <button ng-click = "showAlert()">Click to Alert</button>
     <script>
         var app = angular.module("windowApp", []);
         app.controller('windowCntrl', function($scope, $window){
+
+            $scope.showAlert = ()=>{
+                var msg = $scope.alertMsg
+                $window.alert(msg)
+            }
+
             $scope.openNewWindow = ()=>{
                 var newUrl = 'https://adrish-mitra.web.app';
                 $window.open(newUrl, '_blank')

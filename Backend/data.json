@@ -1,0 +1,17 @@
+[
+    {
+        "usn": "103",
+        "name": "Varun",
+        "fine": "500"
+    },
+    {
+        "usn": "108",
+        "name": "Yashas",
+        "fine": "100"
+    },
+    {
+        "usn": "110",
+        "name": "Tarun",
+        "fine": "1000"
+    }
+]

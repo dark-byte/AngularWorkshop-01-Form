@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Angular JS - Working with Services</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script>
+            var app = angular.module("studentDetails", []);
+            app.controller('studentInfo', function($scope, $http){
+                $http.get('data.json').then((res)=>{
+                    $scope.students = res.data;
+                })
+            });
+        </script>
+
+    </head>
+    <body ng-app = "studentDetails" ng-controller = "studentInfo">
+        <h1 ng-repeat = "student in students"> USN: {{student.usn}} , Name: {{student.name}} , Fine : {{student.fine | currency : 'Rs ':0}}</h1>
+    </body>
+</html>
