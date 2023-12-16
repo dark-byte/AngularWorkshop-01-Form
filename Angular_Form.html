@@ -32,7 +32,7 @@
 
     <div>
         <label for="dob">Date of Birth</label>
-        <input type="date" id="dob" name="dob" ng-model="user.dob" required>
+        <input type="date" id="dob" name="dob" ng-model="user.dob" ng-change="updateAgeValidation()" required>
         <p class="error" ng-show = "userForm.dob.$touched && userForm.dob.$invalid">Please enter valid Date of Birth</p>
     </div>
 
@@ -59,6 +59,18 @@
         } else {
           alert('Please complete the hCaptcha verification.');
         }
+      };
+
+      $scope.updateAgeValidation = function () {
+         // Calculate the minimum allowed birth year based on the entered age
+         var minBirthYear = new Date().getFullYear() - $scope.user.age;
+
+        // Extract the birth year from the entered date of birth
+        var selectedYear = new Date($scope.user.dob).getFullYear();
+
+        // Update validation status
+        $scope.userForm.dob.$setValidity('ageMismatch', selectedYear === minBirthYear);
+
       };
     });
   </script>
